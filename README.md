@@ -31,8 +31,8 @@ We offer three distinct editions to suit your hardware setup and feature require
 | :--- | :---: | :---: | :---: |
 | **Format** | Compiled Binary (`.bin`) | Arduino Sketch (`.ino`) | Arduino Sketch (`.ino`) |
 | **Captive Web Portal** | Core Local Web UI | Modern Responsive Web UI | Modern Responsive Web UI |
-| **Display Support (TFT UI)** | ❌ | ✅ ST7789 Integration | ✅ ST7789 Integration |
-| **Security Features** | Standard Protection | Updated Security | Advanced Security |
+| **Display Support (TFT UI)** | ✅ ST7789 Integration | ✅ ST7789 Integration | ✅ ST7789 Integration |
+| **Security Features** | Standard Protection | Advanced Security | Advanced Security |
 | **Serial Diagnostics** | ❌ | ❌ | ✅ Serial Monitor Logs |
 | **RFID Module Access** | ❌ | ❌ | ✅ Full RFID Access |
 | **Source Code Protection** | Binary Protected | Full `.ino` Source | Full `.ino` Source |
