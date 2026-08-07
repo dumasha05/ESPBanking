@@ -43,37 +43,27 @@ The Free Edition provides a fully functional, standalone local application desig
 
 ### 1. Download & Install `esptool`
 Open your command prompt or terminal and install the tool using Python:
-```bash
-py -m pip install esptool
-```
+
+    py -m pip install esptool
 
 ### 2. Connect Your ESP32
 Plug your ESP32 into your computer using a data-capable USB cable. Note the assigned COM port (e.g., `COM3` on Windows, or `/dev/ttyUSB0` on Linux/Mac). Put the board into download mode if required by holding the **BOOT** button, pressing **RST**, and releasing **BOOT**.
 
 ### 3. Erase Flash Memory (Recommended)
 Wipe any old data to prevent boot loops. Replace `COM3` with your actual port:
-```bash
-py -m esptool --chip esp32 --port COM3 erase_flash
-```
+
+    py -m esptool --chip esp32 --port COM3 erase_flash
 
 ### 4. Flash the Firmware Binary
 Upload the compiled binary. 
 
-*If you are using a single merged binary file:*
-```bash
-py -m esptool --chip esp32 --port COM3 --baud 921600 write_flash 0x0 espbanking_free_merged.bin
-```
-
-*If you are using separate component binaries (Bootloader, Partitions, and App):*
-```bash
-py -m esptool --chip esp32 --port COM3 --baud 921600 write_flash 0x1000 bootloader.bin 0x8000 partitions.bin 0x10000 espbanking_free.bin
-```
+    py -m esptool --chip esp32 --port COM3 --baud 921600 write_flash 0x1000 ESPBanking_Free.ino.bootloader.bin 0x8000 ESPBanking_Free.ino.partitions.bin 0x10000 ESPBanking_Free.ino.bin
 
 ### 5. Wi-Fi Provisioning & Startup
 Open your Serial Monitor at **115200 baud**. If no network credentials are saved, the ESP32 will host an Access Point named **`ESPBank-Local`** (Password: `12345678`). You can also provision it directly via the serial terminal by sending:
-```text
-WIFI:YourSSID,YourPassword
-```
+
+    WIFI:YourSSID,YourPassword
+
 Once connected, navigate to the assigned IP address shown on the TFT screen to access the dashboard.
 
 ---
