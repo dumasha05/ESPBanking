@@ -109,8 +109,7 @@ Execute the following command *(update `COM3` and your binary filename as needed
 
 ## 💬 Community & Discussions
 
-Join our community discussions to share feedback, showcase custom builds, and discuss modifications:
-* 🌐 **Official Reddit Discussion Thread:** *(https://www.reddit.com/r/esp32projects/comments/1vgzaix/i_built_a_standalone_offline_banking_server/)*
+
 
 ---
 
