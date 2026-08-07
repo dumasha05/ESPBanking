@@ -6,6 +6,12 @@ Created by **Dumasha**.
 
 ---
 
+## 📬 Contact & Community
+* **Email:** dumasha.contact@gmail.com
+* **Reddit Discussion:** [Check out the r/esp32projects thread](https://www.reddit.com/r/esp32projects/comments/1vgzaix/i_built_a_standalone_offline_banking_server/)
+
+---
+
 ## 📋 Table of Contents
 - [Free Edition (Lite)](#-free-edition-lite)
 - [Pro Edition ($15)](#-pro-edition-15)
@@ -16,14 +22,14 @@ Created by **Dumasha**.
 
 ## 🟢 Free Edition (Lite)
 
-The Free Edition provides a fully functional, standalone local application designed for hobbyists and makers[cite: 4].
+The Free Edition provides a fully functional, standalone local application designed for hobbyists and makers.
 
 ### Features
-* **Local Web Dashboard:** Clean, responsive HTML/JS web interface served directly from the ESP32[cite: 4].
-* **TFT Display Status Monitor:** Live screen updates showing system boot state, Wi-Fi connection status, local IP address, and active user session[cite: 4].
-* **Capped User System:** Manages up to 3 local accounts (`admin`, `alice`, `bob`)[cite: 4].
-* **Transactions:** Real-time deposit and withdrawal logic tracking cent-precision values with a running history log[cite: 4].
-* **Serial Wi-Fi Provisioning:** Easily configure network credentials dynamically via the Arduino Serial Monitor[cite: 4].
+* **Local Web Dashboard:** Clean, responsive HTML/JS web interface served directly from the ESP32.
+* **TFT Display Status Monitor:** Live screen updates showing system boot state, Wi-Fi connection status, local IP address, and active user session.
+* **Capped User System:** Manages up to 3 local accounts (`admin`, `alice`, `bob`).
+* **Transactions:** Real-time deposit and withdrawal logic tracking cent-precision values with a running history log.
+* **Serial Wi-Fi Provisioning:** Easily configure network credentials dynamically via the Arduino Serial Monitor.
 
 ---
 
@@ -37,7 +43,10 @@ Unlock the full power of ESPBanking for advanced deployments and professional se
 * **Persistent Database Integration:** Enhanced backend storage utilizing LittleFS/SPIFFS with encrypted JSON database structures.
 * **Priority Updates & Support:** Direct access to code updates, security patches, and developer assistance.
 
-👉 **[Upgrade to ESPBanking Pro for $15](https://buy.polar.sh/polar_cl_0bKVXNPvRLxRmi2gwR9kSxV05FBdRlY7aQK0i4DmsnZ)**[cite: 4]
+---
+
+### 🛒 Upgrade to Pro
+[![Upgrade to ESPBanking Pro](https://img.shields.io/badge/Upgrade_to-ESPBanking_Pro_($15)-orange?style=for-the-badge&logo=buymecoffee&logoColor=white)](https://buy.polar.sh/polar_cl_0bKVXNPvRLxRmi2gwR9kSxV05FBdRlY7aQK0i4DmsnZ)
 
 ---
 
@@ -45,22 +54,24 @@ Unlock the full power of ESPBanking for advanced deployments and professional se
 
 | Pin Function | ESP32 GPIO Pin |
 | :--- | :--- |
-| **TFT_CS** | GPIO 15[cite: 4] |
-| **TFT_DC** | GPIO 2[cite: 4] |
-| **TFT_RST** | GPIO 4[cite: 4] |
-| **TFT_MOSI (SDA)** | GPIO 23[cite: 4] |
-| **TFT_SCLK (SCL)** | GPIO 18[cite: 4] |
+| **TFT_CS** | GPIO 15 |
+| **TFT_DC** | GPIO 2 |
+| **TFT_RST** | GPIO 4 |
+| **TFT_MOSI (SDA)** | GPIO 23 |
+| **TFT_SCLK (SCL)** | GPIO 18 |
 
 ---
 
 ## 🚀 Quick Start Guide (Free Edition)
+  There is also a Manual Available for your convinience
 
 1. Clone or download this repository.
 2. Open `ESPBanking_Free.ino` in the **Arduino IDE**.
 3. Install required library dependencies:
-   * `Adafruit GFX Library`[cite: 4]
-   * `Adafruit ST7789 Library`[cite: 4]
+   * `Adafruit GFX Library`
+   * `Adafruit ST7789 Library`
 4. Select your ESP32 board configurations and flash the code.
-5. Open the **Serial Monitor (115200 baud)**[cite: 4]. If no Wi-Fi credentials are saved, the device creates an Access Point named **`ESPBank-Local`** (Password: `12345678`)[cite: 4] or you can provision via serial[cite: 4]:
+5. Open the **Serial Monitor (115200 baud)**. If no Wi-Fi credentials are saved, the device creates an Access Point named **`ESPBank-Local`** (Password: `12345678`) or you can provision via serial:
    ```text
    WIFI:YourSSID,YourPassword
+   
