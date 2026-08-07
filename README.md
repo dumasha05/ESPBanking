@@ -1,96 +1,136 @@
-# 🏦 ESPBanking System (Free & Pro Editions)
+<div align="center">
 
-**Made by Dumasha**
+# 🏦 ESPBank Simulator
 
-An embedded, local web-based banking and account simulation system designed for the **ESP32** microcontroller, featuring real-time visual feedback via an **ST7789 TFT Display**.
+**A standalone banking simulator & captive web portal running entirely on an ESP32 microcontroller!** 🚀
 
----
-
-## 📬 Contact & Community
-* **Email:** dumasha.contact@gmail.com
-* **Reddit Discussion:** [r/esp32projects Thread](https://www.reddit.com/r/esp32projects/comments/1vgzaix/i_built_a_standalone_offline_banking_server/)
-
----
-
-## 💎 Pro Edition ($15)
-
-Unlock the full power of ESPBanking for advanced deployments and professional setups. Features include advanced security (SSL/TLS), unlimited user slots, and encrypted database integration.
-
-**Purchase ESPBanking Pro Here:**
-[https://buy.polar.sh/polar_cl_0bKVXNPvRLxRmi2gwR9kSxV05FBdRlY7aQK0i4DmsnZ](https://buy.polar.sh/polar_cl_0bKVXNPvRLxRmi2gwR9kSxV05FBdRlY7aQK0i4DmsnZ)
+[![ESP32](https://img.shields.io/badge/Microcontroller-ESP32-red.svg?style=for-the-badge&logo=espressif)](https://www.espressif.com/)
+[![Language](https://img.shields.io/badge/Language-C%2B%2B-blue.svg?style=for-the-badge&logo=cplusplus)](https://isocpp.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg?style=for-the-badge)](#)
 
 ---
 
-## 🟢 Free Edition (Lite)
+[Editions](#-version-matrix--editions) • [Environment](#%EF%B8%8F-environment--library-requirements-pro--ultra-pro) • [Flashing Guide](#-free-edition-binary-flashing-guide) • [Hardware Wiring](#-hardware-wiring--pinouts) • [Support](#-community--support)
 
-The Free Edition provides a fully functional, standalone local application designed for hobbyists and makers. It features a capped 3-user system, basic transaction logic, and real-time ST7789 TFT display monitoring.
-
-### 🛠️ Hardware & Pin Configuration (ST7789 SPI)
-
-| Pin Function | ESP32 GPIO Pin |
-| :--- | :--- |
-| **TFT_CS** | GPIO 15 |
-| **TFT_DC** | GPIO 2 |
-| **TFT_RST** | GPIO 4 |
-| **TFT_MOSI (SDA)** | GPIO 23 |
-| **TFT_SCLK (SCL)** | GPIO 18 |
+</div>
 
 ---
 
-## 🚀 How to Download `esptool` & Flash the Binary
+## 🌟 Overview
 
-`esptool` is the official Python utility used to flash firmware to ESP32 chips. Follow these steps to upload the Free Edition binary to your board.
-
-### 1. Download & Install `esptool`
-Open your command prompt or terminal and install the tool using Python:
-
-```bash
-py -m pip install esptool
-```
-
-### 2. Connect Your ESP32
-Plug your ESP32 into your computer using a data-capable USB cable. Note the assigned COM port (e.g., `COM3` on Windows, or `/dev/ttyUSB0` on Linux/Mac). Put the board into download mode if required by holding the **BOOT** button, pressing **RST**, and releasing **BOOT**.
-
-### 3. Erase Flash Memory (Recommended)
-Wipe any old data to prevent boot loops. Replace `COM3` with your actual port:
-
-```bash
-py -m esptool --chip esp32 --port COM3 erase_flash
-```
-
-### 4. Flash the Firmware Binary
-Upload the compiled binary using one of the options below.
-
-**Option A: Single Merged Binary (Recommended)**
-```bash
-py -m esptool --chip esp32 --port COM3 --baud 921600 write_flash 0x0 ESPBanking_Free.ino.merged.bin
-```
-
-**Option B: Separate Component Binaries**
-```bash
-py -m esptool --chip esp32 --port COM3 --baud 921600 write_flash 0x1000 ESPBanking_Free.ino.bootloader.bin 0x8000 ESPBanking_Free.ino.partitions.bin 0x10000 ESPBanking_Free.ino.bin
-```
-
-### 5. Wi-Fi Provisioning & Startup
-Open your Serial Monitor at **115200 baud**. If no network credentials are saved, the ESP32 will host an Access Point named **`ESPBank-Local`** (Password: `12345678`). You can also provision it directly via the serial terminal by sending:
-
-```text
-WIFI:YourSSID,YourPassword
-```
-
-Once connected, navigate to the assigned IP address shown on the TFT screen to access the dashboard.
+Welcome to the official repository for **ESPBank Simulator** — an all-in-one standalone banking simulator and captive portal web environment powered by the ESP32! Designed for testing, hardware integrations, and custom web portal demonstrations.
 
 ---
 
-## ⚖️ License & Copyright
+## 📦 Version Matrix & Editions
 
-**© 2026 Dumasha. All Rights Reserved.**
+We offer three distinct editions to suit your hardware setup and feature requirements:
 
-This software is the intellectual property of Dumasha. You are permitted to download and use the Free Edition for personal, non-commercial purposes. 
+| Feature / Capability | 🟢 **Free Edition** | 🔵 **Pro Edition** | 🟣 **Ultra Pro Edition** |
+| :--- | :---: | :---: | :---: |
+| **Format** | Compiled Binary (`.bin`) | Arduino Sketch (`.ino`) | Arduino Sketch (`.ino`) |
+| **Captive Web Portal** | Core Local Web UI | Modern Responsive Web UI | Modern Responsive Web UI |
+| **Display Support (TFT UI)** | ❌ | ✅ ST7789 Integration | ✅ ST7789 Integration |
+| **Security Features** | Standard Protection | Updated Security | Advanced Security |
+| **Serial Diagnostics** | ❌ | ❌ | ✅ Serial Monitor Logs |
+| **RFID Module Access** | ❌ | ❌ | ✅ Full RFID Access |
+| **Source Code Protection** | Binary Protected | Full `.ino` Source | Full `.ino` Source |
+| **Access / Link** | **Included in Releases** | [🛒 **Get Pro Version**](https://buy.polar.sh/polar_cl_0bKVXNPvRLxRmi2gwR9kSxV05FBdRlY7aQK0i4DmsnZ) | [⚡ **Get Ultra Pro Version**](https://buy.polar.sh/polar_cl_ccz5OsXlkcnZDQX2rKivadVrn4bEla0S8CP6v3TzJnK) |
 
-**Restrictions:**
-* **No Copying or Stealing:** You may not copy, reverse-engineer, modify, distribute, or re-upload this code or binary as your own work.
-* **No Commercial Use:** You may not sell or monetize this software in any form.
-* **Pro Edition:** The Pro version is strictly for the original purchaser and cannot be shared or redistributed.
+---
 
-By downloading or using this software, you agree to these terms.
+## 🛠️ Environment & Library Requirements (Pro & Ultra Pro)
+
+To compile the Arduino sketches (`.ino`) successfully without memory or build errors, ensure your Arduino IDE environment matches these specifications:
+
+> [!IMPORTANT]
+> **Required Driver Notice:** Always use direct **Adafruit GFX** and **ST7789** drivers. **Never use `TFT_eSPI`**.
+
+* 🧠 **ESP32 Arduino Core:** Version `2.0.14`
+* 🌐 **ESPAsyncWebServer:** Version `1.2.3` *(by ESPAsync)*
+* ⚡ **AsyncTCP:** Version `1.1.4`
+* 📺 **Display Drivers:** Direct `Adafruit GFX` & `ST7789`
+* 💾 **Partition Scheme:** Must be set to **`Huge APP (3MB No OTA / 1MB SPIFFS)`**
+  * *Location:* `Tools > Partition Scheme > Huge APP (3MB No OTA / 1MB SPIFFS)`
+  * *(Standard partition layouts lack the flash space required for embedded web assets and program logic).*
+
+---
+
+## ⚡ Free Edition: Binary Flashing Guide
+
+The **Free Edition** is distributed as a pre-compiled binary (`.bin`) to protect source architecture. Flash it directly to your ESP32 using `esptool`:
+
+### Step 1: Install `esptool`
+Ensure Python is installed on your computer, then install `esptool` via command prompt / terminal:
+
+    py -m pip install esptool
+
+### Step 2: Connect Your Hardware
+Connect your ESP32 using a quality USB data cable and identify your COM port (e.g., `COM3` on Windows or `/dev/ttyUSB0` on Linux/Mac).
+
+### Step 3: Run Flash Command
+Execute the following command *(update `COM3` and your binary filename as needed)*:
+
+    python -m esptool --chip esp32 --port COM3 --baud 921600 write_flash -z 0x1000 espbank_free_v1.bin
+
+> [!TIP]
+> **Connection Hangs?** If `esptool` gets stuck attempting to connect, press and hold the physical **BOOT** button on your ESP32 board until the flashing progress begins!
+
+---
+
+## 🔌 Hardware Wiring & Pinouts
+
+### 🖥️ 1. Pro Edition Display Connections (ST7789 TFT SPI)
+
+| ESP32 Pin | Display Pin | Description |
+| :--- | :--- | :--- |
+| **GPIO 23** | `SDA` / `MOSI` | SPI Data Line |
+| **GPIO 18** | `SCL` / `SCK` | SPI Clock Line |
+| **GPIO 5** | `CS` | Chip Select |
+| **GPIO 22** | `DC` / `RS` | Data / Command Control |
+| **GPIO 21** | `RES` / `RST` | Display Reset |
+
+---
+
+### 💳 2. Ultra Pro Edition: RFID Reader Wiring
+
+> [!WARNING]
+> **Wiring Quirk Note:** In this tested hardware configuration, the RFID reader **IRQ pin** is intentionally left unconnected and is linked directly to the reset and `EN` pins as verified in working setups.
+
+| RFID Module Pin | ESP32 Pin | Notes |
+| :--- | :--- | :--- |
+| **SDA (SS)** | **GPIO 4** | SPI Slave Select |
+| **SCK** | **GPIO 18** | Shared SPI Clock |
+| **MOSI** | **GPIO 23** | Shared SPI MOSI |
+| **MISO** | **GPIO 19** | Shared SPI MISO |
+
+---
+
+## 💬 Community & Discussions
+
+Join our community discussions to share feedback, showcase custom builds, and discuss modifications:
+* 🌐 **Official Reddit Discussion Thread:** *(https://www.reddit.com/r/esp32projects/comments/1vgzaix/i_built_a_standalone_offline_banking_server/)*
+
+---
+
+## 📧 Contact & Support
+
+Have questions or need custom hardware/software support? Feel free to reach out directly:
+
+* **Developer:** Dumasha Wijesekeragamage
+* **Email:** [dumasha05@gmail.com](mailto:dumasha05@gmail.com)
+
+---
+
+## ⚖️ License
+
+Distributed under the **MIT License** — No Copyright Infringement Intended.
+
+> Permission is **NOT** granted to use, modify, and distribute this software freely outside the stated terms. Provided "as-is" without warranty. Neither author nor contributors are liable for destruction, misuse, or other damages.
+
+---
+
+<div align="center">
+  <sub>Crafted with ❤️ for ESP32 Enthusiasts & Developers</sub>
+</div>
