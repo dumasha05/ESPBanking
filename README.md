@@ -109,7 +109,7 @@ Execute the following command *(update `COM3` and your binary filename as needed
 
 ## 💬 Community & Discussions
 
-
+Join my Blog at https://dev.to/dumasha_01f08bc176b77172f/espbanking-by-dumasha-12ma
 
 ---
 
