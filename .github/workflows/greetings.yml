@@ -1,0 +1,110 @@
+name: Community & Review Automation
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  # ==========================================
+  # 1. GREETINGS (New Issues & Pull Requests)
+  # ==========================================
+  welcome-greeting:
+    name: Welcome Contributor
+    if: github.event_name == 'issues' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Welcome Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const isPR = !!context.payload.pull_request;
+            const author = isPR ? context.payload.pull_request.user.login : context.payload.issue.user.login;
+            const issueNumber = context.issue.number;
+
+            if (context.eventName === 'issues') {
+              github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `👋 Hi @${author}! Thank you for opening this issue. A maintainer will review it shortly.`
+              });
+            } else if (context.eventName === 'pull_request') {
+              github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `🎉 Thanks for opening this PR, @${author}! We appreciate your contribution. Our team will review your changes soon.`
+              });
+            }
+
+  # ==========================================
+  # 2. REVIEW HANDLING (Good vs. Bad Reviews)
+  # ==========================================
+  handle-reviews:
+    name: Process PR Review Feedback
+    if: github.event_name == 'pull_request_review'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Respond to Review State
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const reviewState = context.payload.review.state; // 'approved', 'changes_requested', or 'commented'
+            const prNumber = context.payload.pull_request.number;
+            const reviewer = context.payload.review.user.login;
+            const author = context.payload.pull_request.user.login;
+
+            // GOOD REVIEW (APPROVED)
+            if (reviewState === 'approved') {
+              // Add 'approved' label
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                labels: ['approved', 'ready-for-merge']
+              });
+              // Remove 'changes-requested' label if it was previously set
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  name: 'changes-requested'
+                });
+              } catch (e) { /* Label didn't exist, ignore */ }
+
+              // Post approval message
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: `🌟 **Good Review!** @${reviewer} approved these changes. @${author}, your PR is ready to merge!`
+              });
+            }
+
+            // BAD / CHANGES REQUESTED REVIEW
+            else if (reviewState === 'changes_requested') {
+              // Add 'changes-requested' label
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                labels: ['changes-requested', 'needs-work']
+              });
+
+              // Post changes requested message
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: `⚠️ **Changes Requested!** @${reviewer} requested some changes on this PR. @${author}, please review the feedback above and push updates.`
+              });
+            }
