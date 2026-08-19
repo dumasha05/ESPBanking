@@ -123,11 +123,19 @@ Have questions or need custom hardware/software support? Feel free to reach out 
 ---
 
 ## ⚖️ License
+Copyright (c) 2026 ESPBanking. All rights reserved.
 
-Distributed under the **MIT License** — No Copyright Infringement Intended.
+1. RESTRICTIONS
+You are strictly prohibited from modifying, adapting, reverse engineering, decompiling, disassembling, or creating derivative works of this source code or compiled firmware. 
 
-> Permission is **NOT** granted to use, modify, and distribute this software freely outside the stated terms. Provided "as-is" without warranty. Neither author nor contributors are liable for destruction, misuse, or other damages.
+2. PERSONAL USE
+You are granted a non-exclusive, non-transferable license to use the software for strictly personal, non-commercial purposes only.
 
+3. COMMERCIAL USE PROHIBITED
+Any commercial use, business deployment, redistribution, or inclusion of this software in products intended for sale requires prior written authorization and a commercial agreement. To acquire a commercial license, you must contact the author directly.
+
+4. DISCLAIMER
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
 ---
 
 <div align="center">
