@@ -6,7 +6,7 @@
 
 [![ESP32](https://img.shields.io/badge/Microcontroller-ESP32-red.svg?style=for-the-badge&logo=espressif)](https://www.espressif.com/)
 [![Language](https://img.shields.io/badge/Language-C%2B%2B-blue.svg?style=for-the-badge&logo=cplusplus)](https://isocpp.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg?style=for-the-badge)](#)
 
 ---
