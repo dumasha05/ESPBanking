@@ -98,7 +98,7 @@ Execute the following command *(update `COM3` and your binary filename as needed
 > [!WARNING]
 > **Wiring Quirk Note:** In this tested hardware configuration, the RFID reader **IRQ pin** is intentionally left unconnected and is linked directly to the reset and `EN` pins as verified in working setups.
 
-| RFID Module Pin | ESP32 Pin | Notes |
+| MFRC522 RFID Module Pin | ESP32 Pin | Notes |
 | :--- | :--- | :--- |
 | **SDA (SS)** | **GPIO 4** | SPI Slave Select |
 | **SCK** | **GPIO 18** | Shared SPI Clock |
