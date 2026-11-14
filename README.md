@@ -125,8 +125,8 @@ Have questions or need custom hardware/software support? Feel free to reach out 
 ## ⚖️ License
 Copyright (c) 2026 ESPBanking. All rights reserved.
 
-1. RESTRICTIONS
-You are strictly prohibited from modifying, adapting, reverse engineering, decompiling, disassembling, or creating derivative works of this source code or compiled firmware. 
+1.MODIFICATIONS
+You are allowed to modify this code to your preferences such as the UI, Pins etc. Nut you are not allowed to resell the product
 
 2. PERSONAL USE
 You are granted a non-exclusive, non-transferable license to use the software for strictly personal, non-commercial purposes only.
